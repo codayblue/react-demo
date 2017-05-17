@@ -14,8 +14,16 @@ function Menu(props) {
         );
     });
 
+    menu.unshift(
+      <li key="0">
+        <Link to="/">
+            Add New Task
+        </Link>
+      </li>
+    );
+
     return (
-        <ul>
+        <ul className="nav nav-pills nav-stacked">
             {menu}
         </ul>
     );

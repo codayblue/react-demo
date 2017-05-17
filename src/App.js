@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import logo from './logo.svg';
-import Menu from './menu.js';
-import $ from 'jquery'
+import Menu from './Menu.js';
+import Task from './Task.js';
 import './App.css';
 
 class App extends Component {
@@ -16,9 +16,13 @@ class App extends Component {
 
   componentDidMount() {
 
-    $.get('http://localhost:8080/api/v1/tasks',function(data) {
-      this.setState({ tasks: data});
-    }.bind(this));
+    fetch('http://localhost:8080/api/v1/tasks')
+    .then((resp) => {
+      return resp.json();
+    })
+    .then((json) => {
+      this.setState({tasks: json});
+    });
 
   }
 
@@ -31,11 +35,14 @@ class App extends Component {
             <h2>Welcome to React</h2>
           </div>
           <div className="container">
-            <div className="col-md-2">
-                <Menu tasks={this.state.tasks} />
-            </div>
-            <div className="col-md-4">
-              test
+            <div className="row">
+              <div className="col-md-2">
+                  <Menu tasks={this.state.tasks} />
+              </div>
+              <div className="col-md-4 col-md-offset-2">
+                <Route exact path="/" render={() => { return <h2>TODO: Add form</h2>; }} />
+                <Route path="/:id" component={Task} />
+              </div>
             </div>
           </div>
         </div>
