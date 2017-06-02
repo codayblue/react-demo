@@ -60,7 +60,7 @@ class Tasks extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-4">
           <ul className="nav nav-stacked nav-pills">
             {
               this.state.tasks.map(
@@ -69,7 +69,7 @@ class Tasks extends Component {
             }
           </ul>
         </div>
-        <div className="col-md-6">
+        <div className="col-md-8">
           <Task activeTask={this.state.activeTask} submitHandler={this.completeTask} />
         </div>
       </div>
