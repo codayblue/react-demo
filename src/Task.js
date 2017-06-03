@@ -2,7 +2,7 @@ import React from 'react';
 
 function Task(props) {
     const task = props.activeTask;
-    console.log(task);
+
     return (
         <div className="row">
           <div className="col-md-12">
